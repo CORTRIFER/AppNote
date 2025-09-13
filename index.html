@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppNote++</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app">
+    <div class="app-header">
+      <h1>AppNote++</h1>
+      <div class="app-actions">
+        <button id="theme-toggle" class="btn btn-primary">
+          <i class="fas fa-moon btn-icon"></i> Tema Scuro
+        </button>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="search-container">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="search" placeholder="Cerca Note per Titolo">
+      </div>
+      <button id="toggle-selection-mode" class="btn btn-secondary selection-mode-btn">
+        <i class="fas fa-check-square btn-icon"></i> Modalità Selezione
+      </button>
+      <button id="export-pdf" class="btn btn-secondary">
+        <i class="fas fa-file-pdf btn-icon"></i> Esporta PDF
+      </button>
+      <button id="backup-notes" class="btn btn-secondary">
+        <i class="fas fa-file-export btn-icon"></i> Backup
+      </button>
+      <button id="restore-notes" class="btn btn-secondary">
+        <i class="fas fa-file-import btn-icon"></i> Ripristina
+      </button>
+    </div>
+
+    <div class="storage-info">
+      <span><h3>Spazio utilizzato:</h3></span>
+      <span id="storage-used">0 KB</span>
+    </div>
+    <div class="storage-bar">
+      <div class="storage-progress" id="storage-progress"></div>
+    </div>
+
+    <!-- Controlli per la selezione multipla -->
+    <div class="selection-controls" id="selection-controls" style="display: none;">
+      <div class="selection-info" id="selection-info">0 note selezionate</div>
+      <div class="selection-actions">
+        <button class="select-all-btn" id="select-all-btn">
+          <i class="fas fa-check-square"></i> Seleziona tutto
+        </button>
+        <button class="delete-selected-btn" id="delete-selected-btn" disabled>
+          <i class="fas fa-trash"></i> Elimina selezionate
+        </button>
+      </div>
+    </div>
+
+    <div class="main-content">
+      <div class="note-form-container" id="note-form-container">
+        <div class="form-header">
+          <h2>Nuova Nota</h2>
+          <button class="focus-toggle" id="focus-toggle">
+            <i class="fas fa-expand"></i>
+          </button>
+        </div>
+        
+        <form id="note-form">
+          <input type="text" id="note-title" placeholder="Titolo">
+          <textarea id="note-content" placeholder="Scrivi qualcosa..."></textarea>
+          
+          <div class="word-count" id="word-count">0 parole, 0 caratteri</div>
+          
+          <div class="form-row">
+            <label for="note-color"><h4>Colore Nota:</h4></label>
+            <select id="note-color">
+              <option value="#f44336">Rosso</option>
+              <option value="#ff8300">Arancione</option>
+              <option value="#e09f13">Giallo</option>
+              <option value="#4caf50">Verde</option>
+              <option value="#2196f3">Blu</option>
+              <option value="#00bcd4">Azzurro</option>
+            </select>
+          </div>
+
+          <div class="form-footer">
+            <button type="submit" id="save-note" class="btn btn-primary">
+              <i class="fas fa-plus"></i> Aggiungi Nota
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div id="notes-container" class="notes-container">
+        <div class="empty-state">
+          <i class="fas fa-sticky-note"></i>
+          <h3>Nessuna nota ancora</h3>
+          <p>Aggiungi la tua prima nota per iniziare!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="delete-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Conferma eliminazione</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <p id="delete-modal-text">Sei sicuro di voler eliminare questa nota? L'azione non può essere annullata.</p>
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" id="cancel-delete">Annulla</button>
+        <button class="btn btn-primary" id="confirm-delete">Elimina</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Nuovo modal per selezione nota da esportare -->
+  <div class="modal" id="export-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Esporta Nota in PDF</h3>
+        <button class="modal-close">&times;</button>
+      </div>
+      <p>Seleziona la nota che vuoi esportare:</p>
+      
+      <!-- Barra di ricerca -->
+      <div class="search-container">
+        <input type="text" id="export-search" placeholder="Cerca Note">
+      </div>
+
+      <div class="note-list" id="export-note-list">
+        <!-- Le note verranno aggiunte qui dinamicamente -->
+      </div>
+      
+      <div class="modal-buttons">
+        <button class="btn btn-secondary" id="cancel-export">Annulla</button>
+        <button class="btn btn-primary" id="confirm-export">Esporta</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
