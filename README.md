@@ -1,14 +1,10 @@
 # 📚 AppNote++
 # 🔗 Link: https://cortrifer.github.io/AppNote/
 
-_Un'applicazione web elegante e interattiva per gestire 
-le tue note personali con funzionalità avanzate._
-
----
+Un'applicazione web elegante e interattiva per gestire 
+le tue note personali con funzionalità avanzate.
 
 ## ⌨️ Utilizzare al PC!
-
----
 
 ## ✨ Caratteristiche
 
@@ -23,8 +19,6 @@ le tue note personali con funzionalità avanzate._
 - **Salvataggio Automatico**: Dati persistiti nel `localStorage`  
 - **Contatore Parole**: Monitora la lunghezza delle tue note in tempo reale  
 - **Personalizzazione Colori**: Scegli il colore per ogni nota  
-
----
 
 ## 🎯 Utilizzo
 
@@ -62,8 +56,6 @@ le tue note personali con funzionalità avanzate._
 ### Modalità Focus
 - Clicca sull'icona [] per attivare la modalità schermo intero  
 
----
-
 ## 📊 Struttura Dati
 
 Le note sono memorizzate come:
@@ -81,8 +73,6 @@ Le note sono memorizzate come:
 }
 ```
 
----
-
 ## 🛠 Tecnologie Utilizzate
 - **HTML5** – Struttura semantica e markup  
 - **CSS3** – Stili avanzati con gradienti, flexbox, grid e animazioni  
@@ -91,14 +81,10 @@ Le note sono memorizzate come:
 - **Font Awesome** – Icone e elementi UI  
 - **LocalStorage API** – Persistenza dati lato client  
 
----
-
 ## 📝 Note Importanti
 - I dati vengono salvati **automaticamente nel browser locale**  
 - È possibile **esportare i dati** per backup esterni  
 - L'applicazione funziona **completamente offline** dopo il caricamento iniziale  
-
----
 
 ## 🚀 Come Iniziare
 
